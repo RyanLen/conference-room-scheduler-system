@@ -1,0 +1,6 @@
+export const EVENT_USER_WELCOME = 'user.welcome'
+export const EVENT_ACTIVE = 'user.active'
+export const EVENT_BIND = 'user.bind'
+export const EVENT_BOOKING_NOTICE = 'user.boooking.notice'
+export const EVENT_URGE = 'admin.urge'
+export const EVENT_CLEAR = 'admin.clear'

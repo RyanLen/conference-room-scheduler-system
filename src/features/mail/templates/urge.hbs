@@ -1,0 +1,28 @@
+{{!-- 催促管理员处理预订会议室的订单的模板 --}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会议室预订订单</title>
+</head>
+
+<body>
+
+  <div id="email-template">
+    <p>尊敬的 {{adminName}}，</p>
+    <p>我们注意到有一个新的会议室预订订单需要您的处理。以下是订单的详细信息：</p>
+    <ul>
+      <li>预订人: {{bookerName}}</li>
+      <li>会议室: {{roomName}}</li>
+      <li>预订日期: {{bookingDate}}</li>
+      <li>预订时间: {{bookingTime}}</li>
+      <li>预订时长: {{bookingDuration}}</li>
+    </ul>
+    <p>请尽快审核并确认此预订。感谢您的配合！</p>
+  </div>
+
+</body>
+
+</html>
