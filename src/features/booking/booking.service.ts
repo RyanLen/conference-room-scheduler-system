@@ -236,7 +236,7 @@ export class BookingService {
           managerName: room.manager.username,
           roomName: booking.room.name,
           location: booking.room.location,
-          duration: dayjs(booking.endTime).diff(booking.startTime, 'hour'),
+          duration: dayjs(booking.endTime).diff(booking.startTime, 'minute') + '分钟',
         },
       }
 
@@ -370,6 +370,7 @@ export class BookingService {
   }
 
   async record(userId: number) {
+    console.log("===============userId", userId)
     return await this.entityManager.find(Booking, {
       where: {
         user: {

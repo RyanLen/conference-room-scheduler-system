@@ -112,6 +112,9 @@ export class UsersService {
     user.username = dto.username;
     user.password = await hash(dto.password, 10);
     user.phoneNumber = dto.phone;
+    const role = new Role()
+    role.id = 3
+    user.roles = [role]
 
     try {
       await this.userRepo.save(user)
@@ -230,6 +233,9 @@ export class UsersService {
 
     const user = new User();
     await this.assignDtoToUser(user, dto)
+    const role = new Role()
+    role.id = 3
+    user.roles = [role]
 
     try {
       await this.userRepo.save(user)

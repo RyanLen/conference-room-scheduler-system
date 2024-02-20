@@ -14,8 +14,9 @@ export class MenuController {
   ) { }
 
   @Get('all')
-  async getMenus() {
-    return await this.MenuService.findAllWithRoles([1])
+  @Auth()
+  async getMenus(@CurrentUser('roles') userRoles: string[]) {
+    return await this.MenuService.findAllWithRoles(userRoles)
   }
 
   @Post()

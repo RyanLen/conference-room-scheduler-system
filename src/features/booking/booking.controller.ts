@@ -54,15 +54,14 @@ export class BookingController {
 
   // 获取某个会议室的预订时间，推出可预订时间段
   @Get('time/:roomId')
-  @Auth('sys:booking:query')
   async time(@Param('roomId') roomId: number) {
     return this.bookingService.getTime(roomId);
   }
 
   // 获取会议记录
   @Get('record')
-  @Auth('sys:booking:query')
   @ApiOperation({ summary: '会议记录' })
+  @Auth()
   async record(@CurrentUser('id') userId: number) {
     return this.bookingService.record(userId);
   }
@@ -104,13 +103,11 @@ export class BookingController {
   }
 
   @Get('note/:id')
-  @Auth('sys:booking:query')
   async getNote(@Param('id') id: number) {
     return this.bookingService.getNoteById(id);
   }
 
   @Put('note/:id')
-  @Auth('sys:booking:edit')
   async addNote(@Param('id') id: number, @Body('note') note: string) {
     return this.bookingService.updateNoteById(id, note);
   }

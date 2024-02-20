@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { Menu, Role } from 'src/common/entities';
 import { Meta } from 'src/common/entities/meta.entity';
-import { DataSource, EntityManager, Repository } from 'typeorm';
+import { DataSource, EntityManager, In, Repository } from 'typeorm';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
 import { UpdateOrderBatchDto } from './dto/update-order.dto';
@@ -19,14 +19,20 @@ export class MenuService {
     private dataSource: DataSource
   ) { }
 
-  async findAllWithRoles(userRoles: number[]) {
+  async findAllWithRoles(userRoles: string[]) {
+    const roles = await this.roleRepo.find({
+      where: {
+        name: In(userRoles)
+      }
+    })
+    const rolesIds = roles.map(role => role.id)
     const menus = await this.entityManager
       .createQueryBuilder(Menu, "menu")
       .leftJoinAndSelect("menu.roles", "role")
       .leftJoinAndSelect("menu.meta", "meta")
       .leftJoinAndSelect("menu.children", "children")
       .leftJoinAndSelect("children.meta", "childrenMeta")
-      .where("role.id IN (:...ids)", { ids: userRoles })
+      .where("role.id IN (:...ids)", { ids: rolesIds })
       .andWhere("menu.parent IS NULL")
       .getMany();
 
