@@ -1,0 +1,1 @@
+INSERT INTO `third_party_auth` (`id`, `provider`, `providerId`, `access_token`, `createTime`, `updateTime`, `userId`) VALUES (1, 'feishu', 'ou_f29bdbeb9ac557eb0ad6b6ecacdedfdf', NULL, '2024-02-20 02:03:52.470699', '2024-02-20 02:03:52.470699', 1);

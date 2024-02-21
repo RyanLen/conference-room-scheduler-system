@@ -1,0 +1,11 @@
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (1, '管理页', 'system-setting', 0, 1, 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (2, '用户管理', 'user-circle', 0, 0, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (3, '会议系统', 'rectangle', 0, 0, 0, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (4, '会议管理', 'play-demo', 0, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (5, '预约管理', 'calendar-edit', 0, 2, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (6, '部门管理', 'usergroup', 0, 3, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (7, '菜单管理', 'menu-application', 0, 4, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (8, '会议预约', 'calendar-2', 0, 0, 0, 0, 0, '', 0, 0);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (9, '会议记录', 'assignment', 0, 0, 0, 0, 0, '', 0, 0);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (10, '通知管理', 'notification', 0, 2, 0, 0, 0, '', 0, 0);
+INSERT INTO `meta` (`id`, `title`, `icon`, `expanded`, `orderNo`, `hidden`, `hiddenBreadcrumb`, `single`, `frameSrc`, `frameBlank`, `keepAlive`) VALUES (11, '邮件模板', 'template', 0, 0, 0, 0, 0, '', 0, 0);
