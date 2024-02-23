@@ -152,7 +152,7 @@ export class StatisticService {
         userBookingCountList,
       }
 
-      this.redisService.set(CACHE_KEY, JSON.stringify(cachedData), 60 * 60 * 12)
+      this.redisService.set(CACHE_KEY, JSON.stringify(cachedData), 60 * 60 * 1)
     }
 
     return cachedData

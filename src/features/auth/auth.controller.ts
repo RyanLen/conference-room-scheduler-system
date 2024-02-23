@@ -65,11 +65,7 @@ export class AuthController {
   @Get("active")
   async activeAccount(@Query("mail") mail: string, @Query("token") token: string, @Res() res: Response) {
     const flag = await this.usersService.activeAccount(mail, token)
-    if (flag) {
-      res.redirect(`${this.configService.get('frontend_base_url')}/login`)
-    } else {
-      return '激活失败'
-    }
+    res.redirect(`${this.configService.get('frontend_base_url')}/login?active=${flag ? 1 : 0}`)
   }
 
   @ApiOperation({ summary: '用户登陆' })

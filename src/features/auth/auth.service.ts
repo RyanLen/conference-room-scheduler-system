@@ -31,6 +31,9 @@ export class AuthService {
     if (!user) {
       throw new CustomException("账号不存在", ERR_USER_NOT_FOUND)
     }
+    if (user.isFrozen) {
+      throw new CustomException("账号已被冻结", ERR_USER_NOT_FOUND)
+    }
     const isValid = await compare(password, user.password);
     return isValid ? user : null;
   }
@@ -45,11 +48,18 @@ export class AuthService {
     })
 
     if (!record) {
-      return await this.thirdPartyRepo.save({
-        provider,
-        providerId
-      })
+      throw new CustomException('没有绑定用户,请绑定已有用户', ERR_USER_NOT_FOUND)
     }
+    if (record.user.isFrozen) {
+      throw new CustomException('账号已被冻结', ERR_USER_NOT_FOUND)
+    }
+
+    // if (!record) {
+    //   return await this.thirdPartyRepo.save({
+    //     provider,
+    //     providerId
+    //   })
+    // }
 
     return record
   }

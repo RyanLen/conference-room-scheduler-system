@@ -32,8 +32,9 @@ export class MenuService {
       .leftJoinAndSelect("menu.meta", "meta")
       .leftJoinAndSelect("menu.children", "children")
       .leftJoinAndSelect("children.meta", "childrenMeta")
+      .leftJoinAndSelect("children.roles", "childrenRoles")
       .where("role.id IN (:...ids)", { ids: rolesIds })
-      .andWhere("menu.parent IS NULL")
+      .where("childrenRoles.id IN (:...ids)", { ids: rolesIds })
       .getMany();
 
     return {

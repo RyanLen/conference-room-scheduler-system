@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
-import { ERR_USER_UNBOUND } from 'src/common/constants/exceptions.cons';
 import { createJwtUserPayload } from 'src/common/utils';
-import { CustomException } from 'src/core/exceptions';
 import { AuthService } from '../auth.service';
 import { Strategy } from './Strategy';
 
@@ -24,9 +22,9 @@ export class FeishuStrategy extends PassportStrategy(Strategy, 'feishu') {
 
   async validate(accessToken: string, refreshToken: string, profile: any): Promise<any> {
     const record = await this.authService.loginByThirdParty('feishu', profile.open_id)
-    if (!record.user) {
-      throw new CustomException('没有绑定用户,请绑定已有用户', ERR_USER_UNBOUND, record)
-    }
+    // if (!record.user) {
+    //   throw new CustomException('没有绑定用户,请绑定已有用户', ERR_USER_UNBOUND, record)
+    // }
     return createJwtUserPayload(record.user)
   }
 }

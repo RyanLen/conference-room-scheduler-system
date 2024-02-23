@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectEntityManager, InjectRepository } from '@nestjs/typeorm';
 import { compare, hash } from 'bcrypt';
@@ -32,7 +33,8 @@ export class UsersService {
     @InjectRepository(Permission)
     private readonly permissionRepo: Repository<Permission>,
     private readonly redisService: RedisService,
-    private readonly eventEmitter: EventEmitter2
+    private readonly eventEmitter: EventEmitter2,
+    private readonly configService: ConfigService,
   ) { }
 
   async remove(id: number) {
@@ -60,6 +62,9 @@ export class UsersService {
     user.password = await hash(dto.password, 10);
     user.email = dto.email;
     user.isFrozen = true
+    const role = new Role()
+    role.id = 3
+    user.roles = [role]
 
     try {
       await this.userRepo.save(user);
@@ -67,7 +72,7 @@ export class UsersService {
         to: dto.email,
         data: {
           name: dto.username,
-          link: `http://127.0.0.1:3000/auth/active?mail=${dto.email}&token=${code}`
+          link: `${this.configService.get('backend_base_url')}/auth/active?mail=${dto.email}&token=${code}`
         }
       })
       return '注册成功,请留意邮箱激活账号';
@@ -208,8 +213,13 @@ export class UsersService {
       d.id = dto.department
       user.department = d
     }
-    const roles = (dto.roles && dto.roles.length > 0) ? await this.roleRepo.findBy({ id: In(dto.roles) }) : null;
-    if (roles) user.roles = roles
+    const role = new Role()
+    role.id = 3
+    let roles = [role]
+    if (dto.roles && dto.roles.length > 0) {
+      roles = await this.roleRepo.findBy({ id: In(dto.roles) })
+    }
+    user.roles = roles
     return user
   }
 
@@ -233,9 +243,6 @@ export class UsersService {
 
     const user = new User();
     await this.assignDtoToUser(user, dto)
-    const role = new Role()
-    role.id = 3
-    user.roles = [role]
 
     try {
       await this.userRepo.save(user)
